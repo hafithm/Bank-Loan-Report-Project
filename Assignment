@@ -1,10 +1,10 @@
 Total Loan Applications
 Question: What is the total number of loan applications received?
 
-```
+````
 SELECT count(id) as Total_loan_applications
 FROM loandata;
-
+````
 Answer: The total number of loan applications received is obtained by counting the 'id' column in the 'loandata' table.
 
 MTD Loan Applications
