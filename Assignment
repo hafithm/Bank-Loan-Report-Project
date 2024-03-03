@@ -319,7 +319,22 @@ GROUP BY purpose
 ORDER BY purpose;
 Answer: The total loan applications, funded amount, and amount received for Grade A loans in California (CA) are obtained by filtering the data based on the grade and state, providing insights into specific loan categories in a particular location.
 
-
+``` 
+"Debt consolidation"	651	6541275	6813552
+"car"	82	561725	587156
+"credit card"	272	2418550	2508291
+"educational"	7	43950	48602
+"home improvement"	111	1197150	1243740
+"house"	16	150250	165164
+"major purchase"	113	806175	839028
+"medical"	32	267525	283942
+"moving"	28	159775	157423
+"other"	164	1194550	1234230
+"renewable_energy"	7	80000	87671
+"small business"	57	500300	503636
+"vacation"	26	168825	187177
+"wedding"	35	361600	371178
+```
 
 
 
