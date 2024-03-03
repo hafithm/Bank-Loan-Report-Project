@@ -1,20 +1,21 @@
 Total Loan Applications
 Question: What is the total number of loan applications received?
 
-````
+```
 SELECT count(id) as Total_loan_applications
 FROM loandata;
-````
+```
 Answer: The total number of loan applications received is obtained by counting the 'id' column in the 'loandata' table.
 
 MTD Loan Applications
 Question: How many loan applications were received in the Month-to-Date (MTD) period?
 
-
+```
 SELECT COUNT(id) AS Total_loan_applications 
 FROM loandata 
 WHERE TO_DATE(issue_date, 'DD-MM-YYYY') >= '2021-12-01' 
 AND TO_DATE(issue_date, 'DD-MM-YYYY') < '2022-01-01';
+```
 Answer: The number of loan applications received in the Month-to-Date (MTD) period is calculated by counting the 'id' column in the 'loandata' table within the specified date range.
 
 PMTD Loan Applications
