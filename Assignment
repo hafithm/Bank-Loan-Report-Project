@@ -1,1 +1,341 @@
+Total Loan Applications
+Question: What is the total number of loan applications received?
+
+
+SELECT count(id) as Total_loan_applications
+FROM loandata;
+Answer: The total number of loan applications received is obtained by counting the 'id' column in the 'loandata' table.
+
+MTD Loan Applications
+Question: How many loan applications were received in the Month-to-Date (MTD) period?
+
+
+SELECT COUNT(id) AS Total_loan_applications 
+FROM loandata 
+WHERE TO_DATE(issue_date, 'DD-MM-YYYY') >= '2021-12-01' 
+AND TO_DATE(issue_date, 'DD-MM-YYYY') < '2022-01-01';
+Answer: The number of loan applications received in the Month-to-Date (MTD) period is calculated by counting the 'id' column in the 'loandata' table within the specified date range.
+
+PMTD Loan Applications
+Question: How many loan applications were received in the Previous Month-to-Date (PMTD) period?
+
+
+SELECT COUNT(id) AS Total_loan_applications FROM loandata
+WHERE EXTRACT(MONTH FROM issue_date) = 11;
+Answer: The number of loan applications received in the Previous Month-to-Date (PMTD) period is calculated by counting the 'id' column in the 'loandata' table for the specified month.
+
+Total Funded Amount
+Question: What is the total amount of funds disbursed as loans?
+
+
+SELECT SUM(loan_amount) AS Total_Funded_Amount 
+FROM loandata;
+Answer: The total amount of funds disbursed as loans is obtained by summing the 'loan_amount' column in the 'loandata' table.
+
+MTD Total Funded Amount
+Question: What is the total amount of funds disbursed as loans in the Month-to-Date (MTD) period?
+
+
+SELECT SUM(loan_amount) AS MTD_Total_Funded_Amount 
+FROM loandata 
+WHERE EXTRACT(MONTH FROM issue_date) = 12 
+AND EXTRACT(YEAR FROM issue_date) = 2021;
+Answer: The total amount of funds disbursed as loans in the Month-to-Date (MTD) period is calculated by summing the 'loan_amount' column in the 'loandata' table within the specified month and year.
+
+PMTD Total Funded Amount
+Question: What is the total amount of funds disbursed as loans in the Previous Month-to-Date (PMTD) period?
+
+SELECT SUM(loan_amount) AS PMTD_Total_Funded_Amount 
+FROM loandata 
+WHERE EXTRACT(MONTH FROM issue_date) = 11 
+AND EXTRACT(YEAR FROM issue_date) = 2021;
+Answer: The total amount of funds disbursed as loans in the Previous Month-to-Date (PMTD) period is calculated by summing the 'loan_amount' column in the 'loandata' table for the specified month and year.
+
+Total Amount Received
+Question: What is the total amount received from borrowers?
+
+
+SELECT sum(total_payment) as total_amount_recieved 
+FROM loandata;
+Answer: The total amount received from borrowers is obtained by summing the 'total_payment' column in the 'loandata' table.
+
+Monthly Total Amount Received
+Question: What is the total amount received from borrowers in the Month-to-Date (MTD) period?
+
+
+SELECT SUM(total_payment) as MTD_total_amount_received 
+FROM loandata 
+WHERE EXTRACT(MONTH FROM issue_date) = 12
+AND EXTRACT(YEAR FROM issue_date) = 2021;
+Answer: The total amount received from borrowers in the Month-to-Date (MTD) period is calculated by summing the 'total_payment' column in the 'loandata' table within the specified month and year.
+
+Previous Monthly Total Amount Received
+Question: What is the total amount received from borrowers in the Previous Month-to-Date (PMTD) period?
+
+
+SELECT SUM(total_payment) as PMTD_total_amount_received 
+FROM loandata 
+WHERE EXTRACT(MONTH FROM issue_date) = 11
+AND EXTRACT(YEAR FROM issue_date) = 2021;
+Answer: The total amount received from borrowers in the Previous Month-to-Date (PMTD) period is calculated by summing the 'total_payment' column in the 'loandata' table for the specified month and year.
+
+Average Interest Rate
+Question: What is the average interest rate across all loans?
+
+
+SELECT ROUND(AVG(int_rate) * 100, 2) as Avg_Interest_rate 
+from loandata;
+Answer: The average interest rate across all loans is calculated by taking the average of the 'int_rate' column in the 'loandata' table and rounding it to 2 decimal points.
+
+Monthly Average Interest Rate
+Question: What is the average interest rate across all loans in the Month-to-Date (MTD) period?
+
+
+SELECT ROUND(AVG(int_rate) * 100, 2) as MTD_Avg_Interest_rate 
+from loandata 
+WHERE EXTRACT (MONTH FROM issue_date) = 12;
+Answer: The average interest rate across all loans in the Month-to-Date (MTD) period is calculated by taking the average of the 'int_rate' column in the 'loandata' table for the specified month.
+
+Previous Monthly Average Interest Rate
+Question: What is the average interest rate across all loans in the Previous Month-to-Date (PMTD) period?
+
+sql
+Copy Code
+SELECT ROUND(AVG(int_rate) * 100, 2) as PMTD_Avg_Interest_rate 
+from loandata 
+WHERE EXTRACT (MONTH FROM issue_date) = 11
+AND EXTRACT (YEAR FROM issue_date) = 2021;
+Answer: The average interest rate across all loans in the Previous Month-to-Date (PMTD) period is calculated by taking the average of the 'int_rate' column in the 'loandata' table for the specified month and year.
+
+Avg DTI
+Question: What is the average Debt-to-Income Ratio (DTI) for our borrowers?
+
+
+SELECT ROUND(AVG(dti)*100 , 2) AS Avg_DTI FROM loandata;
+Answer: The average Debt-to-Income Ratio (DTI) for our borrowers is calculated by taking the average of the 'dti' column in the 'loandata' table and rounding it to 2 decimal points.
+
+MTD Avg DTI
+Question: What is the average Debt-to-Income Ratio (DTI) for our borrowers in the Month-to-Date (MTD) period?
+
+
+SELECT ROUND(AVG(dti)*100 , 2) AS MTD_Avg_DTI FROM loandata
+WHERE EXTRACT (MONTH FROM issue_date) = 12;
+Answer: The average Debt-to-Income Ratio (DTI) for our borrowers in the Month-to-Date (MTD) period is calculated by taking the average of the 'dti' column in the 'loandata' table for the specified month.
+
+PMTD Avg DTI
+Question: What is the average Debt-to-Income Ratio (DTI) for our borrowers in the Previous Month-to-Date (PMTD) period?
+
+
+SELECT ROUND(AVG(dti)*100 , 2) AS PMTD_Avg_DTI FROM loandata
+WHERE EXTRACT (MONTH FROM issue_date) = 11
+AND EXTRACT (YEAR FROM issue_date) = 2021;
+Answer: The average Debt-to-Income Ratio (DTI) for our borrowers in the Previous Month-to-Date (PMTD) period is calculated by taking the average of the 'dti' column in the 'loandata' table for the specified month and year.
+
+Good Loan Issued
+Good Loan Percentage
+Question: What is the percentage of loan applications classified as 'Good Loans'?
+
+
+SELECT ROUND((COUNT(CASE WHEN loan_status = 'Fully Paid' OR loan_status = 'Current' THEN id END) * 100.0) / COUNT(id), 2) AS Good_Loan_Percentage
+FROM loandata;
+Answer: The percentage of loan applications classified as 'Good Loans' is calculated by counting the 'id' column for loan applications with a status of 'Fully Paid' or 'Current' and then calculating the percentage of 'Good Loans' out of the total loan applications.
+
+Good Loan Application
+Question: How many loan applications fall under the 'Good Loan' category?
+
+
+SELECT COUNT(id) AS Good_Loan_Applications 
+FROM loandata
+WHERE loan_status = 'Fully Paid' OR loan_status = 'Current';
+Answer: The total number of loan applications falling under the 'Good Loan' category, which consists of loans with a loan status of 'Fully Paid' and 'Current', is obtained by counting the 'id' column in the 'loandata' table.
+
+Good Loan Funded Amount
+Question: What is the total amount of funds disbursed as 'Good Loans'?
+
+SELECT SUM(loan_amount) AS Good_Loan_Funded_amount 
+FROM loandata
+WHERE loan_status = 'Fully Paid' OR loan_status = 'Current';
+Answer: The total amount of funds disbursed as 'Good Loans' is obtained by summing the 'loan_amount' column for loans with a loan status of 'Fully Paid' or 'Current' in the 'loandata' table.
+
+Good Loan Amount Received
+Question: What is the total amount received from borrowers for 'Good Loans'?
+
+
+SELECT SUM(total_payment) AS Good_Loan_amount_received
+FROM loandata
+WHERE loan_status = 'Fully Paid' OR loan_status = 'Current';
+Answer: The total amount received from borrowers for 'Good Loans' is obtained by summing the 'total_payment' column for loans with a loan status of 'Fully Paid' or 'Current' in the 'loandata' table.
+
+Bad Loan Issued
+Bad Loan Percentage
+Question: What is the percentage of loan applications categorized as 'Bad Loans'?
+
+
+SELECT (COUNT(CASE WHEN loan_status = 'Charged Off' THEN id END) * 100.0) / COUNT(id) AS Bad_Loan_Percentage
+FROM loandata;
+Answer: The percentage of loan applications categorized as 'Bad Loans' is calculated by counting the 'id' column for loan applications with a status of 'Charged Off' and then calculating the percentage of 'Bad Loans' out of the total loan applications.
+
+Bad Loan Applications
+Question: How many loan applications fall under the 'Bad Loan' category?
+
+SELECT COUNT(id) AS Bad_Loan_Applications FROM loandata
+WHERE loan_status = 'Charged Off';
+Answer: The total number of loan applications falling under the 'Bad Loan' category, which consists of loans with a loan status of 'Charged Off', is obtained by counting the 'id' column in the 'loandata' table.
+
+Bad Loan Funded Amount
+Question: What is the total amount of funds disbursed as 'Bad Loans'?
+
+SELECT SUM(loan_amount) AS Bad_Loan_Funded_amount FROM loandata
+WHERE loan_status = 'Charged Off';
+Answer: The total amount of funds disbursed as 'Bad Loans' is obtained by summing the 'loan_amount' column for loans with a loan status of 'Charged Off' in the 'loandata' table.
+
+Bad Loan Amount Received
+Question: What is the total amount received from borrowers for 'Bad Loans'?
+
+SELECT SUM(total_payment) AS Bad_Loan_amount_received FROM loandata
+WHERE loan_status = 'Charged Off';
+Answer: The total amount received from borrowers for 'Bad Loans' is obtained by summing the 'total_payment' column for loans with a loan status of 'Charged Off' in the 'loandata' table.
+
+Loan Status
+Question: What are the aggregated metrics for different loan statuses?
+
+SELECT
+    loan_status,
+    COUNT(id) AS LoanCount,
+    SUM(total_payment) AS Total_Amount_Received,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    AVG(int_rate * 100) AS Interest_Rate,
+    AVG(dti * 100) AS DTI
+FROM loandata
+GROUP BY loan_status;
+Answer: The aggregated metrics for different loan statuses, including the count of loans, total amount received, total funded amount, average interest rate, and average debt-to-income ratio (DTI), are obtained by grouping the data based on the loan status in the 'loandata' table.
+
+Monthly Loan Status
+Question: What are the aggregated metrics for different loan statuses in the Month-to-Date (MTD) period?
+
+SELECT 
+    loan_status, 
+    SUM(total_payment) AS MTD_Total_Amount_Received, 
+    SUM(loan_amount) AS MTD_Total_Funded_Amount 
+FROM loandata
+WHERE EXTRACT(MONTH FROM issue_date) = 12
+AND EXTRACT(YEAR FROM issue_date) = 2021
+GROUP BY loan_status;
+Answer: The aggregated metrics for different loan statuses in the Month-to-Date (MTD) period, including the total amount received and total funded amount, are obtained by grouping the data based on the loan status for the specified month and year in the 'loandata' table.
+
+Bank Loan Report | Overview
+Monthly
+Question: What are the total loan applications, funded amount, and amount received categorized by month?
+
+SELECT 
+    EXTRACT(MONTH FROM issue_date) AS Month_Number, 
+    TO_CHAR(issue_date, 'Month') AS Month_Name, 
+    COUNT(id) AS Total_Loan_Applications,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    SUM(total_payment) AS Total_Amount_Received
+FROM loandata
+GROUP BY EXTRACT(MONTH FROM issue_date), TO_CHAR(issue_date, 'Month')
+ORDER BY EXTRACT(MONTH FROM issue_date);
+Answer: The total loan applications, funded amount, and amount received are categorized by month, providing insights into the lending activities over time.
+
+State
+Question: What are the total loan applications, funded amount, and amount received categorized by state?
+
+SELECT 
+    address_state as State,
+    COUNT(id) AS Total_Loan_Applications,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    SUM(total_payment) AS Total_Amount_Received
+FROM loandata
+GROUP by address_state
+ORDER by address_state;
+Answer: The total loan applications, funded amount, and amount received are categorized by state, providing insights into lending activities across different states.
+
+Term
+Question: What are the total loan applications, funded amount, and amount received categorized by loan term?
+
+SELECT 
+    term AS Term, 
+    COUNT(id) AS Total_Loan_Applications,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    SUM(total_payment) AS Total_Amount_Received
+FROM loandata
+GROUP BY term
+ORDER BY term;
+Answer: The total loan applications, funded amount, and amount received are categorized by loan term, providing insights into the distribution of loans across different term lengths.
+
+Employee Length
+Question: What are the total loan applications, funded amount, and amount received categorized by employee length?
+
+SELECT 
+    emp_length AS Employee_Length, 
+    COUNT(id) AS Total_Loan_Applications,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    SUM(total_payment) AS Total_Amount_Received
+FROM loandata
+GROUP BY emp_length
+ORDER BY emp_length;
+Answer: The total loan applications, funded amount, and amount received are categorized by employee length, providing insights into the impact of employment history on loan applications.
+
+Purpose
+Question: What are the total loan applications, funded amount, and amount received categorized by loan purpose?
+
+SELECT 
+    purpose AS PURPOSE, 
+    COUNT(id) AS Total_Loan_Applications,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    SUM(total_payment) AS Total_Amount_Received
+FROM loandata
+GROUP BY purpose
+ORDER BY purpose;
+Answer: The total loan applications, funded amount, and amount received are categorized by loan purpose, providing insights into the primary reasons borrowers seek financing.
+
+Home Ownership
+Question: What are the total loan applications, funded amount, and amount received categorized by home ownership status?
+
+SELECT  
+    home_ownership AS Home_Ownership, 
+    COUNT(id) AS Total_Loan_Applications,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    SUM(total_payment) AS Total_Amount_Received
+FROM loandata
+GROUP BY home_ownership
+ORDER BY home_ownership;
+Answer: The total loan applications, funded amount, and amount received are categorized by home ownership status, providing insights into the impact of home ownership on loan applications.
+
+Grade A in CA
+Question: What are the total loan applications, funded amount, and amount received for Grade A loans in California (CA)?
+
+SELECT 
+    purpose AS PURPOSE, 
+    COUNT(id) AS Total_Loan_Applications,
+    SUM(loan_amount) AS Total_Funded_Amount,
+    SUM(total_payment) AS Total_Amount_Received
+FROM loandata
+WHERE grade = 'A' AND address_state = 'CA'
+GROUP BY purpose
+ORDER BY purpose;
+Answer: The total loan applications, funded amount, and amount received for Grade A loans in California (CA) are obtained by filtering the data based on the grade and state, providing insights into specific loan categories in a particular location.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
