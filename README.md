@@ -9,4 +9,4 @@ Data Cleaning:
 The project also involves data cleaning tasks to ensure the accuracy and reliability of the analysis. This includes handling missing data, removing duplicates, and converting data types to ensure consistency and integrity.
 
 Tableau Visualizations:
-The project includes Tableau visualizations to provide a visual representation of the critical loan-related metrics and trends. The Tableau visualizations offer an interactive and insightful view of the lending operations, facilitating data-driven decision-making and enabling valuable insights into various loan parameters.
+The project includes Tableau visualizations to provide three visualizations representing  the critical loan-related metrics and trends. The Tableau visualizations offer an interactive and insightful view of the lending operations, facilitating data-driven decision-making and enabling valuable insights into various loan parameters.
